@@ -1,37 +1,31 @@
-/*Name this external file gallery.js*/
+/* JavaScript cho Accessible Photo Gallery */
 
-function upDate(previewPic){
-    /* In this function you should 
-     1) change the url for the background image of the div with the id = "image" 
-     to the source file of the preview image
-     
-     2) Change the text  of the div with the id = "image" 
-     to the alt text of the preview image 
-     */
-    
-    // Bước kiểm tra sự kiện và in thông tin ra console (theo gợi ý của đề bài)
-    console.log("Triggered mouseover on: " + previewPic.alt);
+function upDate(previewPic) {
+    console.log("Triggered event on: " + previewPic.alt);
     console.log("Source: " + previewPic.src);
 
-    // 1) Thay đổi background image của phần tử có id = "image" thành src của ảnh được trỏ vào
+    // Thay đổi hình nền của div #image thành src của ảnh đang chọn
     document.getElementById('image').style.backgroundImage = "url('" + previewPic.src + "')";
 
-    // 2) Thay đổi text của phần tử có id = "image" thành alt text của ảnh
+    // Thay đổi nội dung chữ của div #image thành thẻ alt của ảnh
     document.getElementById('image').innerHTML = previewPic.alt;
 }
 
-function unDo(){
-     /* In this function you should 
-     1) Update the url for the background image of the div with the id = "image" 
-     back to the orginal-image.  You can use the css code to see what that original URL was
-     
-     2) Change the text  of the div with the id = "image" 
-     back to the original text.  You can use the html code to see what that original text was
-     */
-        
-    // 1) Đưa background image trở về giá trị ban đầu trong CSS: url('')
+function unDo() {
+    // Đưa hình nền và chữ trở về trạng thái ban đầu
     document.getElementById('image').style.backgroundImage = "url('')";
+    document.getElementById('image').innerHTML = "Hover over or focus on an image below to display here.";
+}
 
-    // 2) Đưa text trở về nội dung ban đầu trong HTML: "Hover over an image below to display here."
-    document.getElementById('image').innerHTML = "Hover over an image below to display here.";
+function addTabIndex() {
+    console.log("Trang đã tải xong, bắt đầu thêm thuộc tính tabindex cho các ảnh...");
+
+    // Lấy tất cả các phần tử ảnh có class là 'preview'
+    let images = document.querySelectorAll('.preview');
+
+    // Dùng vòng lặp for để duyệt qua từng ảnh và gán thuộc tính tabindex
+    for (let i = 0; i < images.length; i++) {
+        images[i].setAttribute('tabindex', '0');
+        console.log("Đã thêm tabindex cho ảnh thứ: " + (i + 1));
+    }
 }
